@@ -1,19 +1,19 @@
 module.exports = function(req, res, next){
-    let err = [];
+    let err = {};
     let{title,short_description, description} =req.body;
     if(title == '' || !title){
-        err.push('Title is required');
+        err.title = 'Title is required';
     }
 
     if(short_description == '' || !short_description){
-        err.push('Short Description is required');
+        err.short_description = 'Short Description is required';
     }
 
    if(description.replace(/^\s+|\s+$/g,'') == '' || !description){
-       err.push('Description is required');
+       err.description = 'Description is required';
    }
 
-   if(err.length !== 0 ) {
+   if(Object.keys(err).length !== 0 ) {
        return res.render('news/form.ejs', {err: err, title, short_description, description});
     }
    next();

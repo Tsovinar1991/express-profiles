@@ -9,27 +9,38 @@
         <div>
             <form action ="<%=process.env.SITE_URL%>/news" method="post">
                 <div class="form-row">
-
-                    <%if(typeof err != 'undefined'){
-                    if(err.length > 0){
-                    err.forEach((el)=>{%>
-                    <div class="alert alert-danger col-md-6" role="alert">
-                        <%=el%>
-                    </div>
-                    <%})}
-                    }%>
-
                     <div class="form-group col-md-6">
                         <label for="title">Title</label>
+                        <%if(typeof err.title != 'undefined'){%>
+                            <div class="text-danger" role="alert">
+                            <%=err.title%>
+                           </div>
+                        <input type="text" name="title" class="form-control border-danger" id="title" placeholder="Title"  <%if(typeof title != 'undefined'){%>value="<%=title%>"<%}%>>
+                        <%}else{%>
                         <input type="text" name="title" class="form-control" id="title" placeholder="Title"  <%if(typeof title != 'undefined'){%>value="<%=title%>"<%}%>>
+                        <%}%>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="short_description">Short  Description</label>
+                        <%if(typeof err.short_description != 'undefined'){%>
+                        <div class="text-danger" role="alert">
+                            <%=err.short_description%>
+                        </div>
+                        <input type="text" name="short_description" class="form-control border-danger" id="short_description" placeholder="Short Description"  <%if(typeof short_description != 'undefined'){%>value="<%=short_description%>"<%}%>>
+                        <%}else{%>
                         <input type="text" name="short_description" class="form-control" id="short_description" placeholder="Short Description"  <%if(typeof short_description != 'undefined'){%>value="<%=short_description%>"<%}%>>
+                        <%}%>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="description">Description</label>
+                        <%if(typeof err.description != 'undefined'){%>
+                        <div class="text-danger" role="alert">
+                            <%=err.description%>
+                        </div>
+                        <textarea name="description" class="form-control border-danger" id="description" rows="9" placeholder="Description"><%if(typeof description != 'undefined' && description != ''){%><%=description%><%}%></textarea>
+                        <%}else{%>
                         <textarea name="description" class="form-control" id="description" rows="9" placeholder="Description"><%if(typeof description != 'undefined' && description != ''){%><%=description%><%}%></textarea>
+                        <%}%>
                     </div>
                 </div>
                 <button style="margin-top:20px;" type="submit" class="btn btn-primary">Create</button>

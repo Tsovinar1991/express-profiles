@@ -24,7 +24,7 @@ require('dotenv').config();
 
 const app = express();
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 const host = process.env.HOST || '127.0.0.1';
 
 
@@ -39,9 +39,7 @@ app.use(express.urlencoded({extended:true}))
 
 
 
-app.get('/',(req, res)=>{
-    res.render('news/form', {err:[]});
-});
+app.use('/', require('./routes/index.js'));
 app.use('/news', require('./routes/news.js'));
 
 
